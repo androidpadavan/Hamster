@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Practicum {
@@ -37,6 +36,39 @@ class HamsterFactory {
             } else {
                 executeCommand(command);
             }
+        }
+    }
+
+    private void executeCommand(@org.jetbrains.annotations.NotNull String command) {
+        String[] parts = command.split(" ");
+        String action = parts[0].toLowerCase();
+
+        switch (action) {
+            case "печать":
+                executePrint();
+                break;
+            case "создать":
+                String name = parts[1];
+                executeCreate(name);
+                break;
+            case "удалить":
+                int index = Integer.parseInt(parts[1]);
+                executeRemoveByIndex(index);
+                break;
+            case "очистить":
+                executeClear();
+                break;
+            case "заменить":
+                int indexReplace = Integer.parseInt(parts[1]);
+                String newName = parts[2];
+                executeSet(indexReplace, newName);
+                break;
+            case "размер":
+                executeSize();
+                break;
+            default:
+                showErrorMessage();
+                break;
         }
     }
 
